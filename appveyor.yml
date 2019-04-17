@@ -1,16 +1,41 @@
-version: 1.9.002{build}
-clone_folder: c:\project\weatherfax_pi
-shallow_clone: true
+#---------------------------------#
+#      general configuration      #
+#---------------------------------#
+
+#---------------------------------#
+#    environment configuration    #
+#---------------------------------#
+
+# Build worker image (VM template)
 image:
 - Visual Studio 2015
 
+# scripts that are called at very beginning, before repo cloning
+# init:
+
+version: 1.9.002{build}
+# clone directory
+clone_folder: c:\project\weatherfax_pi
+# fetch repository as zip archive
+shallow_clone: true   # default is "false"
+# set clone depth, clone entire repository history if not defined
+# clone_depth:5
+
+#---------------------------------#
+#       build configuration       #
+#---------------------------------#
+
+# build platform, i.e. x86, x64, Any CPU. This setting is optional.
 platform: 
 # - x64
-- Win32
+  - Win32
 
+# build Configuration, i.e. Debug, Release, etc.
 configuration: Release
+# to run tests against only selected assemblies and/or categories
 test: OFF
 
+# scripts that run after cloning repository
 install:
   - '"C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /x86'
 
@@ -36,6 +61,7 @@ install:
   - cmd: nmake -f makefile.vc BUILD=release SHARED=1 CFLAGS=/D_USING_V120_SDK71_ CXXFLAGS=/D_USING_V120_SDK71_
   - cmd: nmake -f makefile.vc BUILD=debug SHARED=1 CFLAGS=/D_USING_V120_SDK71_ CXXFLAGS=/D_USING_V120_SDK71_
 
+# scripts to run before build
 before_build:
   - cd c:\project\weatherfax_pi
   - cd buildwin
@@ -50,24 +76,38 @@ before_build:
   - cmd: 7z x -y portaudio-vc12.7z -oc:\project\weatherfax_pi\buildwin
   - cmake -T v120_xp ..
 
+# to run your custom scripts instead of automatic MSBuild
 build_script:
   # - cmake --build . --config debug
   - cmake --build . --target package --config release
 
+#---------------------------------#
+#      artifacts configuration    #
+#---------------------------------#
 artifacts:
   # pushing all *.exe files in directory
-  path: 'build\*.exe'
-  name: installer
+  - path: 'build\*.exe'
+    name: installer
 
+#---------------------------------#
+#     deployment configuration    #
+#---------------------------------#
+  # Deploy to GitHub Releases
 deploy:
   description: 'release created by AppVeyor CI'
-  provider: GitHub
-  # auth_token: 'Plugin Release'
+  - provider: GitHub
+  # auth_token: '%GitHub_auth_token%'
+  # auth_token: '%Plugin Release%'
   # api_key:
-  #   secure: Plugin Release
+  #   secure: '%Plugin Release%'
+  #   secure: 
   artifact: installer
   draft: true
   prerelease: true
   on:
-    appveyor_repo_tag: true # deploy on tag push only
-    configuration: Release  # Debug contains non-redist MS DLLs
+  # branch: master   # release from master branch only
+    APPVEYOR_REPO_TAG: true 
+       # deploy on tag push only
+    configuration: Release  
+       # Debug contains non-redist MS DLLs
+
