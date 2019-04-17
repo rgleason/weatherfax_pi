@@ -60,7 +60,9 @@ artifacts:
 deploy:
   description: 'release created by AppVeyor CI'
   provider: GitHub
-  auth_token: 'Plugin Password'
+  auth_token: 'Plugin Release'
+  api_key:
+     secure: Plugin Release
   artifact: installer
   draft: true
   prerelease: true
