@@ -1,3 +1,4 @@
+version: 1.9.002{build}
 clone_folder: c:\project\weatherfax_pi
 shallow_clone: true
 image:
@@ -54,15 +55,16 @@ build_script:
   - cmake --build . --target package --config release
 
 artifacts:
-  - path: 'build\*.exe'
-    name: installer
+  # pushing all *.exe files in directory
+  path: 'build\*.exe'
+  name: installer
 
 deploy:
   description: 'release created by AppVeyor CI'
   provider: GitHub
-  auth_token: 'Plugin Release'
-  api_key:
-     secure: Plugin Release
+  # auth_token: 'Plugin Release'
+  # api_key:
+  #   secure: Plugin Release
   artifact: installer
   draft: true
   prerelease: true
