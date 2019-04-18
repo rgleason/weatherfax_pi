@@ -100,7 +100,7 @@ deploy:
   # auth_token: '%Plugin Release%'
   api_key:
   #   secure: '%Plugin Release%'
-     secure: AAAAB3NzaC1yc2EAAAADAQABAAACAQC+kBgXQ8bxl2RnBvD6SaLIWBNHO2SXmto5N+cpCHx+6MvZLnfJymAoNT1lVA+SiggwiwP4GgugymtWFAgTBsqpkuLoSGv/Df0CX/m5wVIcqr14xmo9+6qhk1IvkfWPCaNLiDIk3ibla4y+2t8nzuBfC9LLIP1qg26WoBleyybcgKsTxux+7HKLoFDxwoi3bFmix5pKLJ+C9POTaq0r8yT7ZzRPVQTkpzu8lreQXYPINjLTfmxxZz+17JT+Wmi209M4TPY9kVrcYwFxa+wJAxrNd1AGJP1MBu1w3TMjYaeXRVAYg82yaAo4ik1nz1SPaCRJK2bXjB70zD3dpXYGKirNwioiS7zOVgGo+X+LmxrlWd4pr+OL/9JgpJYsbrBSmFEQ6voaijhWtfDjxtX2HB9aT28DhxV7QyNoOFk+87TVIjSKPHsW+ATVVvb73wRtcj0j63Dcb/OaMuWI09mFCqH374vXOB9Lx5d0MyXMpPd8BX2ZkUMi3QzELLyMeLRPAGj58zW+oYR/XYTZJBl/bdGbCG5xjiKKsGOTkVM0sYL3MAz0cbCvWEsBrkOiljRjUkvOAvJutEvRSWWEQmX+HhS5rQZm9BHvPHwGScbAQvdgBjiDNRS1Bte00csPQRq4Y4c+YafLc69YLRKfDSbl2wPEc2Od1NUH8/1WvE2/Zl72HQ
+     secure: 07:3c:a6:1a:27:be:f5:4e:c7:5b:c9:ab:39:51:17:f4
   artifact: installer
   draft: false
   prerelease: false
