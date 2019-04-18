@@ -96,18 +96,18 @@ artifacts:
 deploy:
   description: 'release created by AppVeyor CI'
   provider: GitHub
-  # auth_token: '%GitHub_auth_token%'
+  auth_token: '%GitHub_auth_token%'
   # auth_token: '%Plugin Release%'
-  api_key:
+  # api_key:
   #   secure: '%Plugin Release%'
-     secure: 07:3c:a6:1a:27:be:f5:4e:c7:5b:c9:ab:39:51:17:f4
+  #   secure: 07:3c:a6:1a:27:be:f5:4e:c7:5b:c9:ab:39:51:17:f4
   artifact: installer
   draft: false
   prerelease: false
   tag: $(APPVEYOR_REPO_TAG_NAME)
   on:
   # branch: master   # release from master branch only
-  # APPVEYOR_REPO_TAG: true 
+  APPVEYOR_REPO_TAG: true 
        # deploy on tag push only
     configuration: Release  
        # Debug contains non-redist MS DLLs
