@@ -20,9 +20,9 @@ clone_folder: c:\project\weatherfax_pi
 shallow_clone: true   # default is "false"
 # set clone depth, clone entire repository history if not defined
 # clone_depth:5
-environment:
-  my_variable:
-    secure: xQsetZuByU2V0N6Udpm+kHejgFT3G5imL0K4J/wxCuawdC6LrVE5VmFUQIix35EXlEI8a9h4qJvNxu57FatfCKeV/avo9/hwTV7CJJFjJuvJDKogr0V/IlB9+ZT94dTI6iTK4fC4N/uxwKXVDmHF0053XWnEkN3Gz0q5vRO55FFqiXIkEH7HGO/sHg2kzPtRhoiNOD34uzOjgSqx/eadusdIon9qftOilCBZIxVDAzNfHfzGzkynoIUGbRKnsqH5yRuNCX3RHcsjp4zL8mvNQnEdgonmKSb+8dyx1hYzv5zP9fSZSFFFPWeBruG9qat3Kiriu23QqFEMbsXWI19q0+pWoZG+KuZlCJsECClCZ6nqEgkTSzT3wI4v1N5diJhbS43UC8Fumv6TBjjFB9huaOa4oJjujYjIGROqMVPUlrpeT19FZ5akBJidhR7I4QLOidmc1bYYM/3lhk3TqIjc86YjpK25BKGOZrTLEfjMvHei7JjlDdNzLhBJ2VZc+tDyyLKqH+ZscjDfz1Aw7/Tq/rzQoqLX0RiChEyH2C7kqqrSIvpPHqpkX6VgK2QmHMQNH7RMJN60If8OB3oL8Hj/t7X9zyFoYymXzoKBr34USuR6AAHTTjEX38CIB1qWvNVcc0H6zPHZlIBEW6/45ZMUcy6xzXQH4QEQLwj4nYyRTkH9CVs0oFgv90iabszSNJAyICsszWchOjNaB6fWmwXfgei5MxtaEuwcXmAf20jaPCk+oKAR7+k059amWL6m4kLAWFoAGxayA5Yy2J6ETy3t4+N6BHET1Q1TAWU0ug6u/auEx9fbpMJ+9QlmQo7uAPvdBGkXMe2GrfDx3tAfBLKX2U0g+xFReWlVK5UsLdhr0ZXvmpn+/u2eVg5uqTCV7CSrGTwNFw+H6PdiUznitqMDBkwMY/4HpCO05gtH2Rif9J3nl8aLYDtoWccK41d6qBIA
+# environment:
+#  my_variable:
+#    secure: xQsetZuByU2V0N6Udpm+kHejgFT3G5imL0K4J/wxCuawdC6LrVE5VmFUQIix35EXlEI8a9h4qJvNxu57FatfCKeV/avo9/hwTV7CJJFjJuvJDKogr0V/IlB9+ZT94dTI6iTK4fC4N/uxwKXVDmHF0053XWnEkN3Gz0q5vRO55FFqiXIkEH7HGO/sHg2kzPtRhoiNOD34uzOjgSqx/eadusdIon9qftOilCBZIxVDAzNfHfzGzkynoIUGbRKnsqH5yRuNCX3RHcsjp4zL8mvNQnEdgonmKSb+8dyx1hYzv5zP9fSZSFFFPWeBruG9qat3Kiriu23QqFEMbsXWI19q0+pWoZG+KuZlCJsECClCZ6nqEgkTSzT3wI4v1N5diJhbS43UC8Fumv6TBjjFB9huaOa4oJjujYjIGROqMVPUlrpeT19FZ5akBJidhR7I4QLOidmc1bYYM/3lhk3TqIjc86YjpK25BKGOZrTLEfjMvHei7JjlDdNzLhBJ2VZc+tDyyLKqH+ZscjDfz1Aw7/Tq/rzQoqLX0RiChEyH2C7kqqrSIvpPHqpkX6VgK2QmHMQNH7RMJN60If8OB3oL8Hj/t7X9zyFoYymXzoKBr34USuR6AAHTTjEX38CIB1qWvNVcc0H6zPHZlIBEW6/45ZMUcy6xzXQH4QEQLwj4nYyRTkH9CVs0oFgv90iabszSNJAyICsszWchOjNaB6fWmwXfgei5MxtaEuwcXmAf20jaPCk+oKAR7+k059amWL6m4kLAWFoAGxayA5Yy2J6ETy3t4+N6BHET1Q1TAWU0ug6u/auEx9fbpMJ+9QlmQo7uAPvdBGkXMe2GrfDx3tAfBLKX2U0g+xFReWlVK5UsLdhr0ZXvmpn+/u2eVg5uqTCV7CSrGTwNFw+H6PdiUznitqMDBkwMY/4HpCO05gtH2Rif9J3nl8aLYDtoWccK41d6qBIA
 
 #---------------------------------#
 #       build configuration       #
@@ -97,8 +97,11 @@ artifacts:
 #---------------------------------#
   # Deploy to GitHub Releases
 deploy:
-  description: 'release (appveyor_build_version) created by AppVeyor CI'
+  release: weatherfax_pi v$(appveyor_build_version)-win32
+  description: 'release of Weatherfax_pi $(appveyor_build_version) created by AppVeyor CI'
   provider: GitHub
+  auth_token: 
+    secure: xQsetZuByU2V0N6Udpm+kHejgFT3G5imL0K4J/wxCuawdC6LrVE5VmFUQIix35EXlEI8a9h4qJvNxu57FatfCKeV/avo9/hwTV7CJJFjJuvJDKogr0V/IlB9+ZT94dTI6iTK4fC4N/uxwKXVDmHF0053XWnEkN3Gz0q5vRO55FFqiXIkEH7HGO/sHg2kzPtRhoiNOD34uzOjgSqx/eadusdIon9qftOilCBZIxVDAzNfHfzGzkynoIUGbRKnsqH5yRuNCX3RHcsjp4zL8mvNQnEdgonmKSb+8dyx1hYzv5zP9fSZSFFFPWeBruG9qat3Kiriu23QqFEMbsXWI19q0+pWoZG+KuZlCJsECClCZ6nqEgkTSzT3wI4v1N5diJhbS43UC8Fumv6TBjjFB9huaOa4oJjujYjIGROqMVPUlrpeT19FZ5akBJidhR7I4QLOidmc1bYYM/3lhk3TqIjc86YjpK25BKGOZrTLEfjMvHei7JjlDdNzLhBJ2VZc+tDyyLKqH+ZscjDfz1Aw7/Tq/rzQoqLX0RiChEyH2C7kqqrSIvpPHqpkX6VgK2QmHMQNH7RMJN60If8OB3oL8Hj/t7X9zyFoYymXzoKBr34USuR6AAHTTjEX38CIB1qWvNVcc0H6zPHZlIBEW6/45ZMUcy6xzXQH4QEQLwj4nYyRTkH9CVs0oFgv90iabszSNJAyICsszWchOjNaB6fWmwXfgei5MxtaEuwcXmAf20jaPCk+oKAR7+k059amWL6m4kLAWFoAGxayA5Yy2J6ETy3t4+N6BHET1Q1TAWU0ug6u/auEx9fbpMJ+9QlmQo7uAPvdBGkXMe2GrfDx3tAfBLKX2U0g+xFReWlVK5UsLdhr0ZXvmpn+/u2eVg5uqTCV7CSrGTwNFw+H6PdiUznitqMDBkwMY/4HpCO05gtH2Rif9J3nl8aLYDtoWccK41d6qBIA
   # auth_token: '%GitHub_auth_token%'
   # auth_token: '%Plugin Release%'
   # api_key:
@@ -111,8 +114,6 @@ deploy:
   tag: $(APPVEYOR_REPO_TAG_NAME)
   on:
     # branch: master   # release from master branch only
-    APPVEYOR_REPO_TAG: true 
-       # deploy on tag push only
-    configuration: Release  
-       # Debug contains non-redist MS DLLs
+    APPVEYOR_REPO_TAG: true   # deploy on tag push only
+    configuration: Release    # Debug contains non-redist MS DLLs
 
