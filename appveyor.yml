@@ -109,6 +109,6 @@ deploy:
   # branch: master   # release from master branch only
   APPVEYOR_REPO_TAG: true 
        # deploy on tag push only
-    configuration: Release  
+  configuration: Release  
        # Debug contains non-redist MS DLLs
 
