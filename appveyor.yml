@@ -13,7 +13,7 @@ image:
 # scripts that are called at very beginning, before repo cloning
 # init:
 
-version: 1.9.002{build}
+# version: 1.9.002{build}
 # clone directory
 clone_folder: c:\project\weatherfax_pi
 # fetch repository as zip archive
@@ -98,9 +98,9 @@ deploy:
   provider: GitHub
   # auth_token: '%GitHub_auth_token%'
   # auth_token: '%Plugin Release%'
-  # api_key:
+  api_key:
   #   secure: '%Plugin Release%'
-  #   secure: AAAAB3NzaC1yc2EAAAADAQABAAACAQC+kBgXQ8bxl2RnBvD6SaLIWBNHO2SXmto5N+cpCHx+6MvZLnfJymAoNT1lVA+SiggwiwP4GgugymtWFAgTBsqpkuLoSGv/Df0CX/m5wVIcqr14xmo9+6qhk1IvkfWPCaNLiDIk3ibla4y+2t8nzuBfC9LLIP1qg26WoBleyybcgKsTxux+7HKLoFDxwoi3bFmix5pKLJ+C9POTaq0r8yT7ZzRPVQTkpzu8lreQXYPINjLTfmxxZz+17JT+Wmi209M4TPY9kVrcYwFxa+wJAxrNd1AGJP1MBu1w3TMjYaeXRVAYg82yaAo4ik1nz1SPaCRJK2bXjB70zD3dpXYGKirNwioiS7zOVgGo+X+LmxrlWd4pr+OL/9JgpJYsbrBSmFEQ6voaijhWtfDjxtX2HB9aT28DhxV7QyNoOFk+87TVIjSKPHsW+ATVVvb73wRtcj0j63Dcb/OaMuWI09mFCqH374vXOB9Lx5d0MyXMpPd8BX2ZkUMi3QzELLyMeLRPAGj58zW+oYR/XYTZJBl/bdGbCG5xjiKKsGOTkVM0sYL3MAz0cbCvWEsBrkOiljRjUkvOAvJutEvRSWWEQmX+HhS5rQZm9BHvPHwGScbAQvdgBjiDNRS1Bte00csPQRq4Y4c+YafLc69YLRKfDSbl2wPEc2Od1NUH8/1WvE2/Zl72HQ
+     secure: AAAAB3NzaC1yc2EAAAADAQABAAACAQC+kBgXQ8bxl2RnBvD6SaLIWBNHO2SXmto5N+cpCHx+6MvZLnfJymAoNT1lVA+SiggwiwP4GgugymtWFAgTBsqpkuLoSGv/Df0CX/m5wVIcqr14xmo9+6qhk1IvkfWPCaNLiDIk3ibla4y+2t8nzuBfC9LLIP1qg26WoBleyybcgKsTxux+7HKLoFDxwoi3bFmix5pKLJ+C9POTaq0r8yT7ZzRPVQTkpzu8lreQXYPINjLTfmxxZz+17JT+Wmi209M4TPY9kVrcYwFxa+wJAxrNd1AGJP1MBu1w3TMjYaeXRVAYg82yaAo4ik1nz1SPaCRJK2bXjB70zD3dpXYGKirNwioiS7zOVgGo+X+LmxrlWd4pr+OL/9JgpJYsbrBSmFEQ6voaijhWtfDjxtX2HB9aT28DhxV7QyNoOFk+87TVIjSKPHsW+ATVVvb73wRtcj0j63Dcb/OaMuWI09mFCqH374vXOB9Lx5d0MyXMpPd8BX2ZkUMi3QzELLyMeLRPAGj58zW+oYR/XYTZJBl/bdGbCG5xjiKKsGOTkVM0sYL3MAz0cbCvWEsBrkOiljRjUkvOAvJutEvRSWWEQmX+HhS5rQZm9BHvPHwGScbAQvdgBjiDNRS1Bte00csPQRq4Y4c+YafLc69YLRKfDSbl2wPEc2Od1NUH8/1WvE2/Zl72HQ
   artifact: installer
   draft: true
   prerelease: true
