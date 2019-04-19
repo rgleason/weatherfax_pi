@@ -10,7 +10,7 @@ image:
 # scripts that are called at very beginning, before repo cloning
 # init:
 
-# version: 1.9.002{build}
+version: 1.9.{build}
 # clone directory
 clone_folder: c:\project\weatherfax_pi
 # fetch repository as zip archive
