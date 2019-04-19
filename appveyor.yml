@@ -1,9 +1,9 @@
 #    General Configuration      #
 #    Environment Configuration    #
- environment:
+environment:
   access_token:
     secure: mbgPeg6VB7oIYlnLQNd4XDi5/i46y+O/xXNKsnfdFFusOJjfxS5F1U1yZISa3aGg
-#Appveyor Encrypted  
+# Appveyor Encrypted  
 # Build worker image (VM template)
 image:
 - Visual Studio 2015
