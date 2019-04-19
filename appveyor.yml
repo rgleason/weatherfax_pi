@@ -1,10 +1,5 @@
-#---------------------------------#
-#      general configuration      #
-#---------------------------------#
-
-#---------------------------------#
-#    environment configuration    #
-#---------------------------------#
+#    General Configuration      #
+#    Environment Configuration    #
 
 # Build worker image (VM template)
 image:
@@ -20,13 +15,8 @@ clone_folder: c:\project\weatherfax_pi
 shallow_clone: true   # default is "false"
 # set clone depth, clone entire repository history if not defined
 # clone_depth:5
-# environment:
-#  my_variable:
-#    secure: xQsetZuByU2V0N6Udpm+kHejgFT3G5imL0K4J/wxCuawdC6LrVE5VmFUQIix35EXlEI8a9h4qJvNxu57FatfCKeV/avo9/hwTV7CJJFjJuvJDKogr0V/IlB9+ZT94dTI6iTK4fC4N/uxwKXVDmHF0053XWnEkN3Gz0q5vRO55FFqiXIkEH7HGO/sHg2kzPtRhoiNOD34uzOjgSqx/eadusdIon9qftOilCBZIxVDAzNfHfzGzkynoIUGbRKnsqH5yRuNCX3RHcsjp4zL8mvNQnEdgonmKSb+8dyx1hYzv5zP9fSZSFFFPWeBruG9qat3Kiriu23QqFEMbsXWI19q0+pWoZG+KuZlCJsECClCZ6nqEgkTSzT3wI4v1N5diJhbS43UC8Fumv6TBjjFB9huaOa4oJjujYjIGROqMVPUlrpeT19FZ5akBJidhR7I4QLOidmc1bYYM/3lhk3TqIjc86YjpK25BKGOZrTLEfjMvHei7JjlDdNzLhBJ2VZc+tDyyLKqH+ZscjDfz1Aw7/Tq/rzQoqLX0RiChEyH2C7kqqrSIvpPHqpkX6VgK2QmHMQNH7RMJN60If8OB3oL8Hj/t7X9zyFoYymXzoKBr34USuR6AAHTTjEX38CIB1qWvNVcc0H6zPHZlIBEW6/45ZMUcy6xzXQH4QEQLwj4nYyRTkH9CVs0oFgv90iabszSNJAyICsszWchOjNaB6fWmwXfgei5MxtaEuwcXmAf20jaPCk+oKAR7+k059amWL6m4kLAWFoAGxayA5Yy2J6ETy3t4+N6BHET1Q1TAWU0ug6u/auEx9fbpMJ+9QlmQo7uAPvdBGkXMe2GrfDx3tAfBLKX2U0g+xFReWlVK5UsLdhr0ZXvmpn+/u2eVg5uqTCV7CSrGTwNFw+H6PdiUznitqMDBkwMY/4HpCO05gtH2Rif9J3nl8aLYDtoWccK41d6qBIA
 
-#---------------------------------#
-#       build configuration       #
-#---------------------------------#
+#       Build Configuration       #
 
 # build platform, i.e. x86, x64, Any CPU. This setting is optional.
 platform: 
@@ -84,30 +74,31 @@ build_script:
   # - cmake --build . --config debug
   - cmake --build . --target package --config release
 
-#---------------------------------#
-#      artifacts configuration    #
-#---------------------------------#
+
+#      Artifacts Configuration    #
+
 artifacts:
   # pushing all *.exe files in directory
   - path: 'build\*.exe'
     name: installer
 
-#---------------------------------#
-#     deployment configuration    #
-#---------------------------------#
+
+#     Deployment Configuration    #
+
   # Deploy to GitHub Releases
 deploy:
   release: weatherfax_pi v$(appveyor_build_version)-win32
   description: 'release of Weatherfax_pi $(appveyor_build_version) created by AppVeyor CI'
   provider: GitHub
-  auth_token: 
-    secure: xQsetZuByU2V0N6Udpm+kHejgFT3G5imL0K4J/wxCuawdC6LrVE5VmFUQIix35EXlEI8a9h4qJvNxu57FatfCKeV/avo9/hwTV7CJJFjJuvJDKogr0V/IlB9+ZT94dTI6iTK4fC4N/uxwKXVDmHF0053XWnEkN3Gz0q5vRO55FFqiXIkEH7HGO/sHg2kzPtRhoiNOD34uzOjgSqx/eadusdIon9qftOilCBZIxVDAzNfHfzGzkynoIUGbRKnsqH5yRuNCX3RHcsjp4zL8mvNQnEdgonmKSb+8dyx1hYzv5zP9fSZSFFFPWeBruG9qat3Kiriu23QqFEMbsXWI19q0+pWoZG+KuZlCJsECClCZ6nqEgkTSzT3wI4v1N5diJhbS43UC8Fumv6TBjjFB9huaOa4oJjujYjIGROqMVPUlrpeT19FZ5akBJidhR7I4QLOidmc1bYYM/3lhk3TqIjc86YjpK25BKGOZrTLEfjMvHei7JjlDdNzLhBJ2VZc+tDyyLKqH+ZscjDfz1Aw7/Tq/rzQoqLX0RiChEyH2C7kqqrSIvpPHqpkX6VgK2QmHMQNH7RMJN60If8OB3oL8Hj/t7X9zyFoYymXzoKBr34USuR6AAHTTjEX38CIB1qWvNVcc0H6zPHZlIBEW6/45ZMUcy6xzXQH4QEQLwj4nYyRTkH9CVs0oFgv90iabszSNJAyICsszWchOjNaB6fWmwXfgei5MxtaEuwcXmAf20jaPCk+oKAR7+k059amWL6m4kLAWFoAGxayA5Yy2J6ETy3t4+N6BHET1Q1TAWU0ug6u/auEx9fbpMJ+9QlmQo7uAPvdBGkXMe2GrfDx3tAfBLKX2U0g+xFReWlVK5UsLdhr0ZXvmpn+/u2eVg5uqTCV7CSrGTwNFw+H6PdiUznitqMDBkwMY/4HpCO05gtH2Rif9J3nl8aLYDtoWccK41d6qBIA
+# auth_token: 
+  # secure: rsa_pub? 
   # auth_token: '%GitHub_auth_token%'
   # auth_token: '%Plugin Release%'
-  # api_key:
-  #   secure: AAAAB3NzaC1yc2EAAAADAQABAAACAQC+kBgXQ8bxl2RnBvD6SaLIWBNHO2SXmto5N+cpCHx+6MvZLnfJymAoNT1lVA+SiggwiwP4GgugymtWFAgTBsqpkuLoSGv/Df0CX/m5wVIcqr14xmo9+6qhk1IvkfWPCaNLiDIk3ibla4y+2t8nzuBfC9LLIP1qg26WoBleyybcgKsTxux+7HKLoFDxwoi3bFmix5pKLJ+C9POTaq0r8yT7ZzRPVQTkpzu8lreQXYPINjLTfmxxZz+17JT+Wmi209M4TPY9kVrcYwFxa+wJAxrNd1AGJP1MBu1w3TMjYaeXRVAYg82yaAo4ik1nz1SPaCRJK2bXjB70zD3dpXYGKirNwioiS7zOVgGo+X+LmxrlWd4pr+OL/9JgpJYsbrBSmFEQ6voaijhWtfDjxtX2HB9aT28DhxV7QyNoOFk+87TVIjSKPHsW+ATVVvb73wRtcj0j63Dcb/OaMuWI09mFCqH374vXOB9Lx5d0MyXMpPd8BX2ZkUMi3QzELLyMeLRPAGj58zW+oYR/XYTZJBl/bdGbCG5xjiKKsGOTkVM0sYL3MAz0cbCvWEsBrkOiljRjUkvOAvJutEvRSWWEQmX+HhS5rQZm9BHvPHwGScbAQvdgBjiDNRS1Bte00csPQRq4Y4c+YafLc69YLRKfDSbl2wPEc2Od1NUH8/1WvE2/Zl72HQ
-  #   secure: '%Plugin Release%'
-  #   secure: 07:3c:a6:1a:27:be:f5:4e:c7:5b:c9:ab:39:51:17:f4
+  # environment:
+  # my_variable:
+  #  secure: 8Vd+PKGvcGO8YecwHIpgv6zuSaijeH3fLNUD99GcaJnjNQIluOlkOqB+ifLXCXSD
+  api_key:   #   secure: rsa_pub?
+    secure: 77:79:94:c3:21:03:5b:4f:37:c0:05:b2:61:4f:b1:92
   artifact: installer
   draft: false
   prerelease: false
