@@ -96,15 +96,15 @@ deploy:
   # auth_token: '%Plugin Release%'
   # environment:
   # my_variable:
-  #  secure: 8Vd+PKGvcGO8YecwHIpgv6zuSaijeH3fLNUD99GcaJnjNQIluOlkOqB+ifLXCXSD
-  api_key:   #   secure: rsa_pub?
-    secure: 77:79:94:c3:21:03:5b:4f:37:c0:05:b2:61:4f:b1:92
+  #  secure: 8Vd+PKGvcGO8YecwHIpgv6zuSaijeH3fLNUD99GcaJnjNQIluOlkOqB+ifLXCXSD   #Appveyor Encrypted fingerprint
+#  api_key:   #   secure: rsa_pub?
+#    secure: 77:79:94:c3:21:03:5b:4f:37:c0:05:b2:61:4f:b1:92
   artifact: installer
   draft: false
   prerelease: false
-  tag: $(APPVEYOR_REPO_TAG_NAME)
+#  tag: $(APPVEYOR_REPO_TAG_NAME)
   on:
     # branch: master   # release from master branch only
-    APPVEYOR_REPO_TAG: true   # deploy on tag push only
+#    APPVEYOR_REPO_TAG: true   # deploy on tag push only
     configuration: Release    # Debug contains non-redist MS DLLs
 
