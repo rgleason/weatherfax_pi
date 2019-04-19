@@ -83,11 +83,12 @@ artifacts: # push all files in directory
 
 # Deploy Configuration to GitHub Releases
 deploy:
-  release: weatherfax_pi v$(appveyor_build_version)-win32
-  description: 'release of Weatherfax_pi $(appveyor_build_version) created by AppVeyor CI'
+  release: weatherfax_pi v$(appveyor_build_version)
+  description: 'Releason of weatherfax_pi created by AppVeyor CI build version $(appveyor_build_version)'
   provider: GitHub
-  #  auth_token: 77:79:94:c3:21:03:5b:4f:37:c0:05:b2:61:4f:b1:92 # Fingerprint
-  auth_token: 8Vd+PKGvcGO8YecwHIpgv6zuSaijeH3fLNUD99GcaJnjNQIluOlkOqB+ifLXCXSD   # Encrypted fingerprint
+  auth_token: 77:79:94:c3:21:03:5b:4f:37:c0:05:b2:61:4f:b1:92 
+  # Fingerprint
+  # auth_token: 8Vd+PKGvcGO8YecwHIpgv6zuSaijeH3fLNUD99GcaJnjNQIluOlkOqB+ifLXCXSD   # Encrypted fingerprint
   # auth_token: '%GitHub_auth_token%'
   # auth_token:   # secure: rsa_pub? 
   # auth_token: '%Plugin Release%'
@@ -97,9 +98,9 @@ deploy:
   artifact: installer, portable
   draft: true
   prerelease: true
-#  tag: $(APPVEYOR_REPO_TAG_NAME)
+  tag: $(APPVEYOR_REPO_TAG_NAME)
   on:
-#   APPVEYOR_REPO_TAG: true   # deploy on tag push only
+  APPVEYOR_REPO_TAG: true   # deploy on tag push only
     configuration: Release    # Debug contains non-redist MS DLLs
 #   branch: master   # release from master branch only
 
