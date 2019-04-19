@@ -83,7 +83,7 @@ artifacts: # push all files in directory
 
 # Deploy Configuration to GitHub Releases
 deploy:
-  release: weatherfax_pi-'$(APPVEYOR_REPO_TAG_NAME)'-win32
+  release: weatherfax_pi- $(APPVEYOR_REPO_TAG_NAME)-win32
   description: 'Release of weatherfax_pi $(APPVEYOR_REPO_TAG_NAME) tag created by AppVeyor build $(appveyor_build_version)'
   provider: GitHub
   # auth_token: 77:79:94:c3:21:03:5b:4f:37:c0:05:b2:61:4f:b1:92 # Fingerprint
