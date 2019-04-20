@@ -1,8 +1,8 @@
 #    General Configuration      #
 #    Environment Configuration    #
-# environment:
-#  appveyor_auth_token:
-#    secure: mbgPeg6VB7oIYlnLQNd4XDi5/i46y+O/xXNKsnfdFFusOJjfxS5F1U1yZISa3aGg==
+environment:
+  appveyor_auth_token:
+    secure: mbgPeg6VB7oIYlnLQNd4XDi5/i46y+O/xXNKsnfdFFusOJjfxS5F1U1yZISa3aGg==
 # Appveyor Encrypted  
 # Build worker image (VM template)
 image:
@@ -82,21 +82,16 @@ artifacts: # push all files in directory
   - path: build\weatherfax_pi*.exe
     name: installer
 
-# Deploy Configuration to GitHub Releases
+# Deploy to GitHub Releases
 deploy:
   release: weatherfax_pi- $(APPVEYOR_REPO_TAG_NAME)-win32
   description: 'Release of weatherfax_pi $(APPVEYOR_REPO_TAG_NAME) tag created by AppVeyor build $(appveyor_build_version)'
-  provider: GitHub
-  appveyor_auth_token:
-    secure: mbgPeg6VB7oIYlnLQNd4XDi5/i46y+O/xXNKsnfdFFusOJjfxS5F1U1yZISa3aGg
-# Appveyor Encrypted  
-  
-  artifact: installer, portable
-  draft: true
-  prerelease: true
-  tag: $(APPVEYOR_REPO_TAG_NAME)
-  on:
-#    APPVEYOR_REPO_TAG: true   # deploy on tag push only
-    configuration: Release    # Debug contains non-redist MS DLLs
-#   branch: master   # release from master branch only
-
+  - provider: GitHub
+    artifact: installer, portable
+    draft: true
+    prerelease: true
+    tag: $(APPVEYOR_REPO_TAG_NAME)
+    on:
+#     APPVEYOR_REPO_TAG: true   # deploy on tag push only
+      configuration: Release    # Debug contains non-redist MS DLLs
+#     branch: master   # release from master branch only
