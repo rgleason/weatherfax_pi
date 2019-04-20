@@ -81,13 +81,12 @@ build_script:
 artifacts: # push all files in directory
   - path: build\weatherfax_pi*.exe
     name: installer
-
 # Deploy to GitHub Releases
 deploy:
-    release: weatherfax_pi- $(APPVEYOR_REPO_TAG_NAME)-win32
-    description: 'Release of weatherfax_pi $(APPVEYOR_REPO_TAG_NAME) tag created by AppVeyor build $(appveyor_build_version)'
   - provider: GitHub
     artifact: installer, portable
+    release: weatherfax_pi- $(APPVEYOR_REPO_TAG_NAME)-win32
+    description: 'Release of weatherfax_pi $(APPVEYOR_REPO_TAG_NAME) tag created by AppVeyor build $(appveyor_build_version)'
     draft: true
     prerelease: true
     tag: $(APPVEYOR_REPO_TAG_NAME)
