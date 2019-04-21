@@ -83,14 +83,14 @@ artifacts: # push all files in directory
     name: installer
 # Deploy to GitHub Releases
 deploy:
-    release: weatherfax_pi- $(APPVEYOR_REPO_TAG_NAME)-win32
-    description: 'Release of weatherfax_pi $(APPVEYOR_REPO_TAG_NAME) tag created by AppVeyor build $(appveyor_build_version)'
-    provider: GitHub
-    artifact: installer, portable
-    draft: true
-    prerelease: true
-    tag: $(APPVEYOR_REPO_TAG_NAME)
-    on:
-#     APPVEYOR_REPO_TAG: true   # deploy on tag push only
-      configuration: Release    # Debug contains non-redist MS DLLs
-#     branch: master   # release from master branch only
+  release: weatherfax_pi- $(APPVEYOR_REPO_TAG_NAME)-win32
+  description: 'Release of weatherfax_pi $(APPVEYOR_REPO_TAG_NAME) tag created by AppVeyor build $(appveyor_build_version)'
+  provider: GitHub
+  artifact: installer, portable
+  draft: true
+  prerelease: true
+  tag: $(APPVEYOR_REPO_TAG_NAME)
+  on:
+#   APPVEYOR_REPO_TAG: true   # deploy on tag push only
+    configuration: Release    # Debug contains non-redist MS DLLs
+#   branch: master   # release from master branch only
