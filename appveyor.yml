@@ -2,7 +2,7 @@
 #    Environment Configuration    #
 environment:
   auth_token:
-    secure:'mbgPeg6VB7oIYlnLQNd4XDi5/i46y+O/xXNKsnfdFFusOJjfxS5F1U1yZISa3aGg=='
+    secure:mbgPeg6VB7oIYlnLQNd4XDi5/i46y+O/xXNKsnfdFFusOJjfxS5F1U1yZISa3aGg==
 # Appveyor auth token encrypted  
 # Build worker image (VM template)
 image:
@@ -15,7 +15,7 @@ version: 1.9.{build}
 # clone directory
 clone_folder: c:\project\weatherfax_pi
 # fetch repository as zip archive
-shallow_clone: true   # default is "false"
+shallow_clone: false  # default is "false"
 # set clone depth, clone entire repository history if not defined
 # clone_depth:5
 
