@@ -79,9 +79,9 @@ build_script:
 
 # Artifacts Configuration    #
 artifacts: # push all files in directory
-  - path: build\*.exe
-  - name: installer
-  - tag: $(APPVEYOR_REPO_TAG_NAME)
+  path: build\*.exe
+  name: installer
+  tag: $(APPVEYOR_REPO_TAG_NAME)
 # Deploy to GitHub Releases
 deploy:
   release: weatherfax_pi-v $(APPVEYOR_REPO_TAG_NAME) -win32
