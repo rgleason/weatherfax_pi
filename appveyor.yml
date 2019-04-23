@@ -1,8 +1,8 @@
 #    General Configuration      #
 #    Environment Configuration    #
-environment:
-  auth_token:
-    secure:mbgPeg6VB7oIYlnLQNd4XDi5/i46y+O/xXNKsnfdFFusOJjfxS5F1U1yZISa3aGg==
+# environment:
+#  auth_token:
+#    secure:mbgPeg6VB7oIYlnLQNd4XDi5/i46y+O/xXNKsnfdFFusOJjfxS5F1U1yZISa3aGg==
 # Appveyor auth token encrypted  
 # Build worker image (VM template)
 image:
