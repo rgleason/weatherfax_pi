@@ -84,7 +84,6 @@ artifacts: # push all files in directory
 # Deploy to GitHub Releases
   
 deploy:
-deploy:
   auth_token:
  #   secure: <your encrypted token> # your encrypted token from GitHub
     secure:mbgPeg6VB7oIYlnLQNd4XDi5/i46y+O/xXNKsnfdFFusOJjfxS5F1U1yZISa3aGg==
