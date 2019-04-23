@@ -84,15 +84,16 @@ artifacts: # push all files in directory
 # Deploy to GitHub Releases
   
 deploy:
-
-  release: weatherfax_pi-v $(APPVEYOR_REPO_TAG_NAME) -win32
-  description: 'Release of weatherfax_pi $(APPVEYOR_REPO_TAG_NAME) tag created by AppVeyor build $(appveyor_build_version)'
+deploy:
+  auth_token:
+ #   secure: <your encrypted token> # your encrypted token from GitHub
+    secure:mbgPeg6VB7oIYlnLQNd4XDi5/i46y+O/xXNKsnfdFFusOJjfxS5F1U1yZISa3aGg==
   provider: GitHub
   artifact: installer, portable
   draft: true
   prerelease: true
   tag: $(APPVEYOR_REPO_TAG_NAME) # will not work until tag is pushed
   on:
-#   APPVEYOR_REPO_TAG: true   # deploy on tag push only
     configuration: Release    # Debug contains non-redist MS DLLs
+#   APPVEYOR_REPO_TAG: true   # deploy on tag push only
 #   branch: master   # release from master branch only
