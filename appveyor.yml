@@ -91,7 +91,7 @@ deploy:
   artifact: installer, portable
   draft: true
   prerelease: true
-  tag: $(APPVEYOR_REPO_TAG_NAME) # will not work until tag is pushed
+#  tag: $(APPVEYOR_REPO_TAG_NAME) # will not work until tag is pushed
   on:
     configuration: Release    # Debug contains non-redist MS DLLs
     APPVEYOR_REPO_TAG: true   # deploy on tag push only
