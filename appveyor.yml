@@ -2,7 +2,7 @@
 #    Environment Configuration    #
 # environment:
 #  auth_token:
-#    secure:mbgPeg6VB7oIYlnLQNd4XDi5/i46y+O/xXNKsnfdFFusOJjfxS5F1U1yZISa3aGg==
+#    secure: VVAVg9a8n+XgesI85/cXrXyNeStivq8FynlajE94lGUtzDGeu5PMWI5f1OSYg0tS
 # Appveyor auth token encrypted  
 # Build worker image (VM template)
 image:
@@ -86,7 +86,7 @@ artifacts: # push all files in directory
 deploy:
   appveyor_auth_token:
  #   secure: <your encrypted token> # your encrypted token from GitHub
-    secure:mbgPeg6VB7oIYlnLQNd4XDi5/i46y+O/xXNKsnfdFFusOJjfxS5F1U1yZISa3aGg==
+    secure: VVAVg9a8n+XgesI85/cXrXyNeStivq8FynlajE94lGUtzDGeu5PMWI5f1OSYg0tS
   provider: GitHub
   artifact: installer, portable
   draft: true
