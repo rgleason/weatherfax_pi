@@ -85,7 +85,6 @@ artifacts: # push all files in directory
   
 deploy:
   appveyor_auth_token:
- #   secure: <your encrypted token> # your encrypted token from GitHub
     secure: VVAVg9a8n+XgesI85/cXrXyNeStivq8FynlajE94lGUtzDGeu5PMWI5f1OSYg0tS
   provider: GitHub
   artifact: installer, portable
