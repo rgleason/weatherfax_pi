@@ -224,7 +224,7 @@ void SchedulesDialog::Load(bool force)
     if( wxFileExists( m_weatherfax_pi.StandardPath() + _T("WeatherFaxSchedules.xml") ) )
         OpenXML( m_weatherfax_pi.StandardPath() + _T("WeatherFaxSchedules.xml") );
     else
-        OpenXML(*GetpSharedDataLocation() + _T("plugins")
+        OpenXML(GetPluginDataDir("weatherfax_pi") + _T("plugins")
             + s + _T("weatherfax_pi") + s + _T("data") + s
             + _T("WeatherFaxSchedules.xml"));
 

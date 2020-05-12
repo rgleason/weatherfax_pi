@@ -47,9 +47,9 @@ SET(PACKAGE "weatherfax_pi")
 
 set(VERSION_MAJOR "1")
 set(VERSION_MINOR "9")
-set(VERSION_PATCH "5")
+set(VERSION_PATCH "6")
 set(VERSION_TWEAK "0")
-set(VERSION_DATE "05/11/2020")
+set(VERSION_DATE "05/12/2020")
 set(OCPN_MIN_VERSION "ov50")
 set(OCPN_API_VERSION_MAJOR "1")
 set(OCPN_API_VERSION_MINOR "16")
@@ -307,7 +307,6 @@ SET (HDRS
 			src/georef.h
 			src/icons.h
 			src/InternetRetrievalDialog.h
-			src/ocpn_plugin.h
 			src/SchedulesDialog.h
 			src/WeatherFax.h
 			src/weatherfax_pi.h
@@ -514,7 +513,7 @@ INCLUDE_DIRECTORIES(BEFORE ${PROJECT_SOURCE_DIR}/src/plugingl)
 #INCLUDE_DIRECTORIES( ${PROJECT_SOURCE_DIR}/src/libaudiofile)
 #INCLUDE_DIRECTORIES (src/plugingl)
 #INCLUDE_DIRECTORIES(api-16)
-# INCLUDE_DIRECTORIES (BEFORE ${PROJECT_SOURCE_DIR}/api-16)
+INCLUDE_DIRECTORIES (BEFORE ${PROJECT_SOURCE_DIR}/api-16)
 
 ##================================================================================
 ## Required to collect all the set( headers and SRCS  - Adjust as required
