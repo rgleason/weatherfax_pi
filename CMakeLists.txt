@@ -94,8 +94,8 @@ set(XML_DESCRIPTION "Simple image overlay calibration, Converts any image image 
 ##
 
 #------Settings
+set(APPVEYOR_TEST_DEPLOY_TO_CLOUDSMITH "true")
 option(PLUGIN_USE_SVG "Use SVG graphics" ON)
-
 set(CMAKE_CXX_STANDARD 11)
 #------ End Settings
 
@@ -122,7 +122,7 @@ set(OpenGL_GL_PREFERENCE "LEGACY")
 # Don't use local version of GLU library
 set(USE_LOCAL_GLU FALSE)
 
-option(USE_GL "Enable OpenGL support" OFF)
+option(USE_GL "Enable OpenGL support" ON)
 message(STATUS "USE_GL: ${USE_GL}")
 #------End Settings
 
