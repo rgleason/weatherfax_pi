@@ -33,7 +33,7 @@
 
 #include "AboutDialog.h"
 #include "weatherfax_pi.h"
-#define PLUGIN_VERSION_TWEAK ${VERSION_TWEAK}
+//#define PLUGIN_VERSION_TWEAK ${VERSION_TWEAK}
 
 AboutDialog::AboutDialog( wxWindow *parent ) : AboutDialogBase(parent)
 {
