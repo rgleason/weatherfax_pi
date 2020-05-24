@@ -34,8 +34,9 @@
 
 #include "version.h"
 
-#define     MY_API_VERSION_MAJOR    1
-#define     MY_API_VERSION_MINOR    16
+//Changed to OCPN_API_VERSION MAJOR & MINOR Defined in CMakeLists.txt
+//#define     MY_API_VERSION_MAJOR    1
+//#define     MY_API_VERSION_MINOR    16
 
 #define ABOUT_AUTHOR_URL "http://seandepagnier.users.sourceforge.net"
 
