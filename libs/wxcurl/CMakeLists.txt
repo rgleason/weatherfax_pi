@@ -14,29 +14,15 @@ set(CMAKE_POSITION_INDEPENDENT_CODE "ON")
 add_library(WXCURL_IF INTERFACE)
 add_library(ocpn::wxcurl ALIAS WXCURL_IF)
 
-if (QT_ANDROID)
-  # Return an empty, no-op library -- assumes __OCPN_USE_CURL__ is undef.
-  return ()
+set(_missing_curl_msg
+[[wxcurl depends on the ocpn::libcurl library, please install this from
+opencpn-libs and use it before using wxcurl. This build will run but is
+deprecated, has no Android support and will break in a later release]]
+)
+if (NOT TARGET ocpn::libcurl)
+  message(WARNING ${_missing_curl_msg})
 endif ()
 
-if (WIN32 OR MINGW)
-  option(OCPN_USE_PREBUILT_WXCURL "Use wxCurl libraries" ON)
-else ()
-  set(OCPN_USE_PREBUILT_WXCURL OFF)
-endif ()
-
-if (OCPN_USE_PREBUILT_WXCURL)
-  set(_implib ${CMAKE_CURRENT_LIST_DIR}/win/libcurl.dll)
-  add_library(CURL_LIBRARIES STATIC IMPORTED)
-  set_property(TARGET CURL_LIBRARIES
-    PROPERTY IMPORTED_LOCATION ${CMAKE_CURRENT_LIST_DIR}/win/libcurl.lib
-  )
-  set(CURL_LIBRARIES ${CMAKE_CURRENT_LIST_DIR}/win/libcurl.lib)
-  set(CURL_INCLUDE_DIRS ${CMAKE_CURRENT_LIST_DIR}/include)
-else ()
-  find_package(CURL REQUIRED)
-  target_link_libraries(WXCURL_IF INTERFACE CURL::libcurl)
-endif ()
 
 set(SRC
   include/README
@@ -80,24 +66,36 @@ set(SRC
 )
 
 add_library(WXCURL_SRC STATIC ${SRC})
-target_include_directories(WXCURL_SRC
-  PUBLIC ${CURL_INCLUDE_DIRS} ${CMAKE_CURRENT_LIST_DIR}/src
+target_include_directories(
+  WXCURL_SRC PRIVATE ${CMAKE_CURRENT_LIST_DIR}/include ${CMAKE_CURRENT_LIST_DIR}/src
 )
-target_include_directories(WXCURL_IF
-  INTERFACE ${CMAKE_CURRENT_LIST_DIR}/src
-)
-target_link_libraries(WXCURL_SRC PUBLIC ${CURL_LIBRARIES})
-
-#add_library(WXCURL_SRC PUBLIC)
-add_library(ocpn::wxcurl_src ALIAS WXCURL_SRC)
-
-#add_library(WXCURL_IF INTERFACE)
-#add_library(ocpn::wxcurl ALIAS WXCURL_IF)
-
-if (WIN32)
-  target_link_libraries(WXCURL_IF INTERFACE WXCURL_SRC)
-endif (WIN32)
-
 if (CMAKE_CXX_COMPILER_ID MATCHES "Clang|GNU")
   set_property(TARGET WXCURL_SRC PROPERTY COMPILE_FLAGS "-fvisibility=hidden")
 endif ()
+
+# The curl depenedency
+#
+if (WIN32 AND NOT TARGET ocpn::libcurl)
+  set(_implib ${CMAKE_CURRENT_LIST_DIR}/win/libcurl.dll)
+  add_library(CURL_LIBRARIES STATIC IMPORTED)
+  set_property(
+    TARGET CURL_LIBRARIES
+    PROPERTY IMPORTED_LOCATION ${CMAKE_CURRENT_LIST_DIR}/win/libcurl.lib
+  )
+  target_link_libraries(WXCURL_SRC PUBLIC CURL_LIBRARIES)
+  target_include_directories(
+    WXCURL_SRC PUBLIC ${CMAKE_CURRENT_LIST_DIR}/include
+  )
+elseif (TARGET ocpn::libcurl)
+  target_link_libraries(WXCURL_SRC PUBLIC ocpn::libcurl)
+else ()
+  find_package(CURL REQUIRED)
+  target_link_libraries(WXCURL_SRC PUBLIC CURL::libcurl)
+endif ()
+
+# The public interface
+target_include_directories(
+  WXCURL_IF INTERFACE ${CMAKE_CURRENT_LIST_DIR}/include 
+)
+target_link_libraries(WXCURL_IF INTERFACE WXCURL_SRC ocpn::libcurl)
+get_property(_libs TARGET WXCURL_IF PROPERTY INTERFACE_LINK_LIBRARIES)

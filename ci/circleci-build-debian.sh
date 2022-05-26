@@ -3,56 +3,55 @@
 #
 # Build the Debian artifacts
 #
+
+# Copyright (c) 2021 Alec Leamas
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+
 set -xe
 
-if [ "${CIRCLECI_LOCAL,,}" = "true" ]; then
-    if [[ -d ~/circleci-cache ]]; then
-        if [[ -f ~/circleci-cache/apt-proxy ]]; then
-            cat ~/circleci-cache/apt-proxy | sudo tee -a /etc/apt/apt.conf.d/00aptproxy
-            cat /etc/apt/apt.conf.d/00aptproxy
-        fi
-    fi
+# Load local environment if it exists i. e., this is a local build
+if [ -f ~/.config/local-build.rc ]; then source ~/.config/local-build.rc; fi
+if [ -d /ci-source ]; then cd /ci-source; fi
+
+git submodule update --init opencpn-libs
+
+# Set up build directory and a visible link in /
+builddir=build-$OCPN_TARGET
+test -d $builddir || sudo mkdir $builddir  && sudo rm -rf $builddir/*
+sudo chmod 777 $builddir
+if [ "$PWD" != "/"  ]; then sudo ln -sf $PWD/$builddir /$builddir; fi
+
+# Create a log file.
+exec > >(tee $builddir/build.log) 2>&1;
+
+sudo apt -qq update || apt update
+sudo apt-get -qq install devscripts equivs software-properties-common
+
+sudo mk-build-deps -ir build-deps/control
+sudo apt-get -q --allow-unauthenticated install -f
+
+if [ -n "$BUILD_GTK3" ]; then
+    sudo update-alternatives --set wx-config \
+        /usr/lib/*-linux-*/wx/config/gtk3-unicode-3.0
 fi
 
-sudo apt-get -qq update
-sudo apt-get install devscripts equivs
+sudo apt install -q \
+    python3-pip python3-setuptools python3-dev python3-wheel \
+    build-essential libssl-dev libffi-dev
 
-rm -rf build && mkdir build && cd build
+python3 -m pip install --user --upgrade -q setuptools wheel pip
+python3 -m pip install --user -q cloudsmith-cli cryptography cmake
 
-# Install extra build libs
-ME=$(echo ${0##*/} | sed 's/\.sh//g')
-EXTRA_LIBS=./ci/extras/extra_libs.txt
-if test -f "$EXTRA_LIBS"; then
-    while read line; do
-        sudo apt-get install $line
-    done < $EXTRA_LIBS
+cd $builddir
+
+cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo ..
+make VERBOSE=1 tarball
+ldd app/*/lib/opencpn/*.so
+if [ -d /ci-source ]; then
+    sudo chown --reference=/ci-source -R . ../cache || :
 fi
-EXTRA_LIBS=./ci/extras/${ME}_extra_libs.txt
-if test -f "$EXTRA_LIBS"; then
-    while read line; do
-        sudo apt-get install $line
-    done < $EXTRA_LIBS
-fi
-
-pwd
-sudo mk-build-deps --install ../ci/control
-
-sudo apt-get --allow-unauthenticated install ./*all.deb  || :
-sudo apt-get --allow-unauthenticated install -f
-rm -f ./*all.deb
-
-tag=$(git tag --contains HEAD)
-
-if [ -n "$BUILD_GTK3" ] && [ "$BUILD_GTK3" = "TRUE" ]; then
-  sudo update-alternatives --set wx-config /usr/lib/*-linux-*/wx/config/gtk3-unicode-3.0
-fi
-
-if [ -n "$tag" ]; then
-  cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local ..
-else
-  cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr/local ..
-fi
-
-make -j2
-make package
-ls -l
+sudo chmod --reference=.. .

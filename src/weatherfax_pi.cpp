@@ -112,13 +112,16 @@ bool weatherfax_pi::DeInit(void)
 
 int weatherfax_pi::GetAPIVersionMajor()
 {
-  return OCPN_API_VERSION_MAJOR;
+    return atoi(API_VERSION);
 }
 
 int weatherfax_pi::GetAPIVersionMinor()
 {
-	return OCPN_API_VERSION_MINOR;
+    std::string v(API_VERSION);
+    size_t dotpos = v.find('.');
+    return atoi(v.substr(dotpos + 1).c_str());
 }
+
 
 int weatherfax_pi::GetPlugInVersionMajor()
 {
@@ -148,7 +151,7 @@ wxString weatherfax_pi::GetShortDescription()
 
 wxString weatherfax_pi::GetLongDescription()
 {
-   return _(PLUGIN_LONG_DESCRIPTION);
+   return PLUGIN_LONG_DESCRIPTION;
 
 }
 
