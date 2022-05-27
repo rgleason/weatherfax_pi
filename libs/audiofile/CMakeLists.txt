@@ -1,3 +1,18 @@
+# OpenCPN wrapper for audiofile
+#
+# Exports: ocpn::audiofile transitive link object.
+#
+# See: https://audiofile.68k.org/
+#
+# Imported from bundled sources in weatherfax_pi
+#
+# Copyright (C) 2022 Alec Leamas
+#
+# This program is free software; you can redistribute it and/or modify  *
+# it under the terms of the GNU General Public License as published by  *
+# the Free Software Foundation; either version 3 of the License, or     *
+# (at your option) any later version.                                   *
+
 cmake_minimum_required(VERSION 3.1.0)
 
 project(libaudiofile)
