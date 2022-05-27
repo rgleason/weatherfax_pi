@@ -4,7 +4,9 @@
 #
 # Libusb is available in system libs on Linux and MacOS (both Homebrew
 # and MacPorts). Windows uses bundled, pre-compiled binaries. Android
-# is not supported
+# is not supported.
+#
+# Windows requires installing separate libusb driver code.
 #
 # Copyright (C) 2022 Alec Leamas
 #
