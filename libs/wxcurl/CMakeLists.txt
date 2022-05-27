@@ -1,3 +1,22 @@
+# OpenCPN wrapper for wxCURL
+#
+# Exports:
+#     ocpn::wxcurl transitive link object
+#
+# See:
+#     http://wxcode.sourceforge.net/components/wxcurl/
+#
+# Library has been used and patched for a "long" time within
+# the OpenCPN project.
+
+
+# Copyright (C) 2022 Alec Leamas
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+
 cmake_minimum_required(VERSION 3.1)
 
 if (TARGET ocpn::wxcurl)
@@ -73,7 +92,7 @@ if (CMAKE_CXX_COMPILER_ID MATCHES "Clang|GNU")
   set_property(TARGET WXCURL_SRC PROPERTY COMPILE_FLAGS "-fvisibility=hidden")
 endif ()
 
-# The curl depenedency
+# The curl dependency
 #
 if (WIN32 AND NOT TARGET ocpn::libcurl)
   set(_implib ${CMAKE_CURRENT_LIST_DIR}/win/libcurl.dll)
