@@ -117,4 +117,3 @@ target_include_directories(
   WXCURL_IF INTERFACE ${CMAKE_CURRENT_LIST_DIR}/include 
 )
 target_link_libraries(WXCURL_IF INTERFACE WXCURL_SRC ocpn::libcurl)
-get_property(_libs TARGET WXCURL_IF PROPERTY INTERFACE_LINK_LIBRARIES)
