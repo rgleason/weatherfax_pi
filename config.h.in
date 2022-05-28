@@ -1,0 +1,28 @@
+#ifndef CONFIG_H
+#define CONFIG_H
+
+#ifdef __cplusplus
+#include <wx/intl.h>
+#endif
+
+#define API_VERSION       "@API_VERSION@"
+
+#define PLUGIN_VERSION_MAJOR @PROJECT_VERSION_MAJOR@
+#define PLUGIN_VERSION_MINOR @PROJECT_VERSION_MINOR@
+#define PLUGIN_VERSION_PATCH @PROJECT_VERSION_PATCH@
+#define PLUGIN_VERSION_TWEAK @PROJECT_VERSION_TWEAK@
+
+#define PLUGIN_SHORT_DESCRIPTION "@PKG_SUMMARY@"
+
+#ifdef __cplusplus
+static const char* const
+  PLUGIN_LONG_DESCRIPTION = _(R"""(@PKG_DESCRIPTION@)""");
+#endif
+
+#define PLUGIN_CATALOG_NAME      "opencpn-${PACKAGE_NAME}"
+#define PLUGIN_COMMON_NAME       "@PLUGIN_API_NAME@"
+
+// Copy from watchdog_pi.h
+#define WATCHDOG_TOOL_POSITION   -1 
+
+#endif

@@ -35,7 +35,7 @@
 #endif
 
 #ifdef __WXMSW__
-    #include <wx/msw/msvcrt.h>      // useful to catch memory leaks when compiling under MSVC
+    #include <wx/msw/msvcrt.h>      // useful to catch memory leaks when compiling under MSVC 
 #endif
 
 #include <wx/checkbox.h>
@@ -53,10 +53,7 @@ enum
     UseProxy = wxID_HIGHEST+1
 };
 
-#ifdef _WIN32
 IMPLEMENT_DYNAMIC_CLASS( wxCurlConnectionSettingsPanel, wxPanel )
-#endif
-
 BEGIN_EVENT_TABLE( wxCurlConnectionSettingsPanel, wxPanel )
     EVT_CHECKBOX( UseProxy, wxCurlConnectionSettingsPanel::OnUseProxy )
 END_EVENT_TABLE()

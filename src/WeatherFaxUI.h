@@ -43,8 +43,6 @@
 #include <wx/simplebook.h>
 #include <wx/choicebk.h>
 
-#include "wxWTranslateCatalog.h"
-
 ///////////////////////////////////////////////////////////////////////////
 
 

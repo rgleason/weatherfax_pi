@@ -32,7 +32,7 @@
 #include <wx/fileconf.h>
 #include "qtstylesheet.h"
 
-#include "version.h"
+#include "config.h"
 
 #define ABOUT_AUTHOR_URL "http://seandepagnier.users.sourceforge.net"
 

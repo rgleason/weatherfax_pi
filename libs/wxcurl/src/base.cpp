@@ -20,7 +20,7 @@
 #endif
 
 #ifdef __WXMSW__
-    #include <wx/msw/msvcrt.h>      // useful to catch memory leaks when compiling under MSVC
+    #include <wx/msw/msvcrt.h>      // useful to catch memory leaks when compiling under MSVC 
 #endif
 
 #include <stdio.h>
@@ -40,7 +40,7 @@
 
 extern "C"
 {
-    int wxcurl_evt_progress_func(void* ptr, double rDlTotal, double rDlNow,
+    int wxcurl_evt_progress_func(void* ptr, double rDlTotal, double rDlNow, 
                                  double rUlTotal, double rUlNow)
     {
         wxCurlBase *curl = wx_static_cast(wxCurlBase*, ptr);
@@ -267,9 +267,7 @@ std::string wxCurlProgressBaseEvent::GetHumanReadableSpeed(const std::string &in
 
 DEFINE_EVENT_TYPE(wxCURL_DOWNLOAD_EVENT);
 
-#ifdef _WIN32
 IMPLEMENT_DYNAMIC_CLASS(wxCurlDownloadEvent, wxEvent);
-#endif
 
 wxCurlDownloadEvent::wxCurlDownloadEvent()
 : wxCurlProgressBaseEvent(-1, wxCURL_DOWNLOAD_EVENT),
@@ -278,7 +276,7 @@ wxCurlDownloadEvent::wxCurlDownloadEvent()
 }
 
 wxCurlDownloadEvent::wxCurlDownloadEvent(int id, wxCurlBase *originator,
-                                        const double& rDownloadTotal, const double& rDownloadNow,
+                                        const double& rDownloadTotal, const double& rDownloadNow, 
                                         const std::string& szURL /*= wxEmptyString*/)
 : wxCurlProgressBaseEvent(id, wxCURL_DOWNLOAD_EVENT, originator, szURL),
 m_rDownloadTotal(rDownloadTotal), m_rDownloadNow(rDownloadNow)
@@ -304,9 +302,7 @@ wxCurlDownloadEvent::wxCurlDownloadEvent(const wxCurlDownloadEvent& event)
 
 DEFINE_EVENT_TYPE(wxCURL_UPLOAD_EVENT);
 
-#ifdef _WIN32
 IMPLEMENT_DYNAMIC_CLASS(wxCurlUploadEvent, wxEvent);
-#endif
 
 wxCurlUploadEvent::wxCurlUploadEvent()
 : wxCurlProgressBaseEvent(-1, wxCURL_UPLOAD_EVENT),
@@ -315,7 +311,7 @@ wxCurlUploadEvent::wxCurlUploadEvent()
 }
 
 wxCurlUploadEvent::wxCurlUploadEvent(int id, wxCurlBase *originator,
-                                        const double& rUploadTotal, const double& rUploadNow,
+                                        const double& rUploadTotal, const double& rUploadNow, 
                                         const std::string& szURL /*= wxEmptyString*/)
 : wxCurlProgressBaseEvent(id, wxCURL_UPLOAD_EVENT, originator, szURL),
 m_rUploadTotal(rUploadTotal), m_rUploadNow(rUploadNow)
@@ -341,9 +337,7 @@ wxCurlUploadEvent::wxCurlUploadEvent(const wxCurlUploadEvent& event)
 
 DEFINE_EVENT_TYPE(wxCURL_BEGIN_PERFORM_EVENT);
 
-#ifdef _WIN32
 IMPLEMENT_DYNAMIC_CLASS(wxCurlBeginPerformEvent, wxEvent);
-#endif
 
 wxCurlBeginPerformEvent::wxCurlBeginPerformEvent()
 : wxEvent(-1, wxCURL_BEGIN_PERFORM_EVENT)
@@ -372,9 +366,7 @@ wxCurlBeginPerformEvent::wxCurlBeginPerformEvent(const wxCurlBeginPerformEvent& 
 
 DEFINE_EVENT_TYPE(wxCURL_END_PERFORM_EVENT);
 
-#ifdef _WIN32
 IMPLEMENT_DYNAMIC_CLASS(wxCurlEndPerformEvent, wxEvent);
-#endif
 
 wxCurlEndPerformEvent::wxCurlEndPerformEvent()
 : wxEvent(-1, wxCURL_END_PERFORM_EVENT),
@@ -419,7 +411,7 @@ m_iHostPort(-1),
 m_iResponseCode(-1),
 m_pHeaders(NULL),
 m_bUseProxy(false),
-m_iProxyPort(-1),
+m_iProxyPort(-1), 
 m_bVerbose(false),
 m_pEvtHandler(pEvtHandler),
 m_nId(id),
@@ -490,7 +482,7 @@ bool wxCurlBase::SetStringOpt(CURLoption option, const wxCharBuffer &str)
     //                 for all the time it's owned by libCURL
 
     /*  FIXME: converting to plain ASCII is not always the Best Thing. E.g.
-            for CURLOPT_USERPWD, we'd need to consult RFC2616 (HTTP) or
+            for CURLOPT_USERPWD, we'd need to consult RFC2616 (HTTP) or 
             another RFC depending on the authentication system in use, etc etc
             For now we convert to pure ASCII which in 99% of the cases will
             Just Do the Work
@@ -644,7 +636,7 @@ void wxCurlBase::SetURL(const wxString& szRelativeURL)
 }
 
 std::string wxCurlBase::GetURL() const
-{
+{ 
     wxString s = wxCURL_BUF2STRING(m_szCurrFullURL);
     return std::string(s.mb_str());
 }
