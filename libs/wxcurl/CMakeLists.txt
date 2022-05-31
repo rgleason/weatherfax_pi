@@ -112,8 +112,9 @@ else ()
   target_link_libraries(WXCURL_SRC PUBLIC CURL::libcurl)
 endif ()
 
-# The public interface
+# The public interface.
+#
+target_link_libraries(WXCURL_IF INTERFACE WXCURL_SRC)
 target_include_directories(
   WXCURL_IF INTERFACE ${CMAKE_CURRENT_LIST_DIR}/include 
 )
-target_link_libraries(WXCURL_IF INTERFACE WXCURL_SRC ocpn::libcurl)
