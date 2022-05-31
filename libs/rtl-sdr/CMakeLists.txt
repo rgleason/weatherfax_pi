@@ -2,11 +2,16 @@
 #
 # Exports: ocpn::rtlsdr transitive link object
 #
-# See: https://osmocom.org/projects/rtl-sdr/wiki/Rtl-sdr. 
+# See: https://osmocom.org/projects/rtl-sdr/wiki/Rtl-sdr.
 #
 # Library imported from https://github.com/pinkavaj/rtl-sdr at commit
 #     4520f00 lib: fix FC0012 reset GPIO
 #
+# Patches:
+#   - A new FindLibUSB.cmake, old one did not locate properly. This uses
+#     a LIBUSB_1 rather that LIBUSB variable prefix, this is changed in
+#     src/CMakeLists.txt
+#   - src/CMakeLists.txt has been patched to only build the static library
 #
 # Copyright (C) 2022 Alec Leamas
 #

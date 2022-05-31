@@ -1,3 +1,22 @@
+# OpenCPN wrapper for wxCURL
+#
+# Exports:
+#     ocpn::wxcurl transitive link object
+#
+# See:
+#     http://wxcode.sourceforge.net/components/wxcurl/
+#
+# Library has been used and patched for a "long" time within
+# the OpenCPN project.
+
+
+# Copyright (C) 2022 Alec Leamas
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+
 cmake_minimum_required(VERSION 3.1)
 
 if (TARGET ocpn::wxcurl)
@@ -25,44 +44,44 @@ endif ()
 
 
 set(SRC
-  include/README
   include/curl
   include/curl/curlbuild.h
-  include/curl/curlrules.h
-  include/curl/easy.h
-  include/curl/curl.h
-  include/curl/curlbuild.h.in
   include/curl/curlbuild.h.cmake
-  include/curl/typecheck-gcc.h
+  include/curl/curlbuild.h.in
+  include/curl/curl.h
+  include/curl/curlrules.h
   include/curl/curlver.h
+  include/curl/easy.h
   include/curl/mprintf.h
-  include/curl/stdcheaders.h
   include/curl/multi.h
+  include/curl/stdcheaders.h
+  include/curl/typecheck-gcc.h
+  include/README
+  src/base.cpp
+  src/dav.cpp
+  src/davtool.cpp
+  src/dialog.cpp
+  src/ftp.cpp
+  src/ftpparse.cpp
+  src/ftpparse.h
+  src/ftptool.cpp
+  src/http.cpp
+  src/panel.cpp
+  src/telnet.cpp
+  src/thread.cpp
+  src/utils.cpp
   src/wx/curl
-  src/wx/curl/utils.h
-  src/wx/curl/http.h
+  src/wx/curl/base.h
+  src/wx/curl/dav.h
+  src/wx/curl/davtool.h
+  src/wx/curl/dialog.h
   src/wx/curl/ftp.h
   src/wx/curl/ftptool.h
-  src/wx/curl/dialog.h
-  src/wx/curl/thread.h
+  src/wx/curl/http.h
   src/wx/curl/panel.h
-  src/wx/curl/base.h
   src/wx/curl/telnet.h
-  src/wx/curl/davtool.h
-  src/wx/curl/dav.h
-  src/utils.cpp
-  src/davtool.cpp
-  src/ftpparse.cpp
-  src/panel.cpp
-  src/ftpparse.h
-  src/telnet.cpp
-  src/ftp.cpp
-  src/base.cpp
-  src/dialog.cpp
-  src/http.cpp
-  src/thread.cpp
-  src/ftptool.cpp
-  src/dav.cpp
+  src/wx/curl/thread.h
+  src/wx/curl/utils.h
 )
 
 add_library(WXCURL_SRC STATIC ${SRC})
@@ -73,7 +92,7 @@ if (CMAKE_CXX_COMPILER_ID MATCHES "Clang|GNU")
   set_property(TARGET WXCURL_SRC PROPERTY COMPILE_FLAGS "-fvisibility=hidden")
 endif ()
 
-# The curl depenedency
+# The curl dependency
 #
 if (WIN32 AND NOT TARGET ocpn::libcurl)
   set(_implib ${CMAKE_CURRENT_LIST_DIR}/win/libcurl.dll)
@@ -93,9 +112,9 @@ else ()
   target_link_libraries(WXCURL_SRC PUBLIC CURL::libcurl)
 endif ()
 
-# The public interface
+# The public interface.
+#
+target_link_libraries(WXCURL_IF INTERFACE WXCURL_SRC)
 target_include_directories(
   WXCURL_IF INTERFACE ${CMAKE_CURRENT_LIST_DIR}/include 
 )
-target_link_libraries(WXCURL_IF INTERFACE WXCURL_SRC ocpn::libcurl)
-get_property(_libs TARGET WXCURL_IF PROPERTY INTERFACE_LINK_LIBRARIES)
