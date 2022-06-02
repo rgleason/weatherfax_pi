@@ -1,0 +1,45 @@
+# add flatpak-options args in here like this:
+#    - name: libusb
+#      config-opts:
+#          - --disable-shared
+#          - --enable-static
+#          - --disable-udev
+#          - --prefix=/app/extensions/${PACKAGE}
+#      sources:
+#          - type: archive
+#            url: https://downloads.sourceforge.net/project/libusb/libusb-1.0/libusb-1.0.24/libusb-1.0.24.tar.bz2
+#            sha256: 7efd2685f7b327326dcfb85cee426d9b871fd70e22caa15bb68d595ce2a2b12a
+#      cleanup: ["/include", "/lib/*.a", "/lib/*.la", "/lib/pkgconfig"]
+#
+# be carefull about indents and naming.
+  - name: glu
+    config-opts:
+        - --disable-shared
+        - --enable-static
+        - --prefix=/app/extensions/weatherfax
+    sources:
+        - type: archive
+          url: https://mesa.freedesktop.org/archive/glu/glu-9.0.1.tar.xz
+          sha256: fb5a4c2dd6ba6d1c21ab7c05129b0769544e1d68e1e3b0ffecb18e73c93055bc
+    cleanup: ["/include", "/lib/*.a", "/lib/*.la", "/lib/pkgconfig"]
+  - name: libusb
+    config-opts:
+        - --disable-shared
+        - --enable-static
+        - --disable-udev
+        - --prefix=/app/extensions/weatherfax
+    sources:
+        - type: archive
+          url: https://downloads.sourceforge.net/project/libusb/libusb-1.0/libusb-1.0.24/libusb-1.0.24.tar.bz2
+          sha256: 7efd2685f7b327326dcfb85cee426d9b871fd70e22caa15bb68d595ce2a2b12a
+    cleanup: ["/include", "/lib/*.a", "/lib/*.la", "/lib/pkgconfig"]
+  - name: portaudio
+    sources:
+        - type: archive
+          url: http://www.portaudio.com/archives/pa_stable_v190600_20161030.tgz
+          sha256: f5a21d7dcd6ee84397446fa1fa1a0675bb2e8a4a6dceb4305a8404698d8d1513
+    config-opts:
+        - --disable-shared
+        - --enable-static
+        - --prefix=/app/extensions/weatherfax
+    cleanup: ["/include", "/lib/*.a", "/lib/*.la", "/lib/pkgconfig"]
