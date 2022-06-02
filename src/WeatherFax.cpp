@@ -40,7 +40,7 @@
 
 #include "wximgkap.h"
 
-#ifdef __OCPN__ANDROID__
+#ifdef __ANDROID__
 #include <qdebug.h>
 #endif
 
@@ -229,7 +229,7 @@ WeatherFax::WeatherFax( weatherfax_pi &_weatherfax_pi, wxWindow* parent)
 
     m_tDeleteAudioWizard.Connect(wxEVT_TIMER, wxTimerEventHandler( WeatherFax::OnDeleteWizardTimer ), NULL, this);
 
-#ifdef __OCPN__ANDROID__
+#ifdef __ANDROID__
     GetHandle()->setAttribute(Qt::WA_AcceptTouchEvents);
     GetHandle()->grabGesture(Qt::PanGesture);
     GetHandle()->setStyleSheet( qtStyleSheet);
@@ -316,7 +316,7 @@ WeatherFax::~WeatherFax()
 }
 
 
-#ifdef __OCPN__ANDROID__
+#ifdef __ANDROID__
 void WeatherFax::OnEvtPanGesture( wxQT_PanGestureEvent &event)
 {
     switch(event.GetState()){
@@ -468,7 +468,7 @@ void WeatherFax::OpenImage(wxString filename, wxString station, wxString area, w
     if (!wimg.CanRead(filename))
         ::wxInitAllImageHandlers();
 
-#ifdef __OCPN__ANDROID__
+#ifdef __ANDROID__
     qDebug() << "load file...";
 #endif
     if(!wimg.LoadFile(filename)) {
@@ -485,7 +485,7 @@ void WeatherFax::OpenImage(wxString filename, wxString station, wxString area, w
 #endif
         {
             wxMessageDialog mdlg(this, _("Failed to load input file: ") + filename
-#ifdef __OCPN__ANDROID__
+#ifdef __ANDROID__
                                  + _("Android doesn't support tif images")
 #endif
                                  , _("Weather Fax"), wxOK | wxICON_ERROR);
@@ -494,12 +494,12 @@ void WeatherFax::OpenImage(wxString filename, wxString station, wxString area, w
         }
     }
 
-#ifdef __OCPN__ANDROID__
+#ifdef __ANDROID__
     qDebug() << "ok";
 #endif
     WeatherFaxImage *img = new WeatherFaxImage(wimg, transparency, whitetransparency, invert);
     wxString name = station.size() && area.size() ? (station + _T(" - ") + area) : _T("");
-#ifdef __OCPN__ANDROID__
+#ifdef __ANDROID__
     qDebug() << "image ok";
 #endif
     for(unsigned int i=0; i<m_BuiltinCoords.GetCount(); i++)
@@ -514,11 +514,11 @@ void WeatherFax::OpenImage(wxString filename, wxString station, wxString area, w
         FaxDecoderCaptureSettings CaptureSettings = m_weatherfax_pi.m_CaptureSettings;
         CaptureSettings.type = FaxDecoderCaptureSettings::NONE;
 
-#ifdef __OCPN__ANDROID__
+#ifdef __ANDROID__
         qDebug() << "create wizard...";
 #endif
         WeatherFaxWizard wizard(*img, CaptureSettings, *this, name.size() ? &BuiltinCoordList : &m_UserCoords, name);
-#ifdef __OCPN__ANDROID__
+#ifdef __ANDROID__
         qDebug() << "run wizard...";
 #endif
         wizard.RunWizard(0);
@@ -606,7 +606,7 @@ void WeatherFax::OnSaveAs( wxCommandEvent& event )
               m_weatherfax_pi.m_export_path, image.m_Coords->name + _T(".png"),
               _ ( "\
 All files (*.*)|*.*" ), wxFD_SAVE);
-#ifdef __OCPN__ANDROID__
+#ifdef __ANDROID__
         wxSize sz = ::wxGetDisplaySize();
         saveDialog.SetSize(0, 0, sz.x, sz.y-40);
 #endif
@@ -680,7 +680,7 @@ void WeatherFax::OnExport( wxCommandEvent& event )
               _ ( "\
 KAP Files|*.KAP;*.kap|\
 All files (*.*)|*.*" ), wxFD_SAVE);
-#ifdef __OCPN__ANDROID__
+#ifdef __ANDROID__
         wxSize sz = ::wxGetDisplaySize();
         saveDialog.SetSize(0, 0, sz.x, sz.y-40);
 #endif

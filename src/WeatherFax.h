@@ -26,7 +26,7 @@
 
 #include <vector>
 
-#ifdef __OCPN__ANDROID__
+#ifdef __ANDROID__
 #include <wx/qt/private/wxQtGesture.h>
 #endif
 
@@ -73,7 +73,7 @@ public:
     WeatherFax( weatherfax_pi &_weatherfax_pi, wxWindow* parent);
     ~WeatherFax();
 
-#ifdef __OCPN__ANDROID__
+#ifdef __ANDROID__
     void OnEvtPanGesture( wxQT_PanGestureEvent &event);
 #endif    
     void OnLeftDown( wxMouseEvent& event );
@@ -127,7 +127,7 @@ protected:
 private:
     bool DownloadFile( wxString filename );
 
-#ifdef __OCPN__ANDROID__
+#ifdef __ANDROID__
     wxPoint m_downPos, m_startPos, m_startMouse;
 #endif    
 };
