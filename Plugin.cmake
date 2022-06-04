@@ -133,6 +133,9 @@ macro(add_plugin_libraries)
   add_subdirectory("${CMAKE_SOURCE_DIR}/opencpn-libs/wxJSON")
   target_link_libraries(${PACKAGE_NAME} ocpn::wxjson)
 
+  add_subdirectory("${CMAKE_SOURCE_DIR}/opencpn-libs/opencpn-glu")
+  target_link_libraries(${PACKAGE_NAME} opencpn::glu)
+
   add_subdirectory("${CMAKE_SOURCE_DIR}/opencpn-libs/plugingl")
   target_link_libraries(${PACKAGE_NAME} ocpn::plugingl)
 
