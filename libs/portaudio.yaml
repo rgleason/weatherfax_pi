@@ -6,5 +6,5 @@
   config-opts:
       - --disable-shared
       - --enable-static
-      - --prefix=/app/extensions/@plugin_name
+      - --prefix=/app/extensions/@app_id
   cleanup: ["/include", "/lib/*.a", "/lib/*.la", "/lib/pkgconfig"]

@@ -3,7 +3,7 @@
   config-opts: 
       - --disable-shared
       - --enable-static
-      - --prefix=/app/extensions/@plugin_name
+      - --prefix=/app/extensions/@app_id
   sources: 
     - type: archive
       url: https://mesa.freedesktop.org/archive/glu/glu-9.0.1.tar.xz
