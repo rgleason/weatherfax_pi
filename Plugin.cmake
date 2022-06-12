@@ -142,7 +142,7 @@ macro(add_plugin_libraries)
   add_subdirectory("${CMAKE_SOURCE_DIR}/opencpn-libs/curl")
   target_link_libraries(${PACKAGE_NAME} ocpn::libcurl)
 
-  add_subdirectory("${CMAKE_SOURCE_DIR}/libs/wxcurl")
+  add_subdirectory("${CMAKE_SOURCE_DIR}/opencpn-libs/wxcurl")
   target_link_libraries(${PACKAGE_NAME} ocpn::wxcurl)
 
   add_subdirectory("${CMAKE_SOURCE_DIR}/libs/googletest")
