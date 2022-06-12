@@ -22,9 +22,9 @@ build-options:
     build-args:
         - --share=network
 modules:
-    - @include libs/glu.yaml
-    - @include libs/libusb.yaml
-    - @include libs/portaudio.yaml
+    - @include opencpn-libs/flatpak/glu.yaml
+    - @include opencpn-libs/flatpak/libusb.yaml
+    - @include opencpn-libs/flatpak/portaudio.yaml
     - name: weatherfax
       no-autogen: true
       buildsystem: cmake
