@@ -111,6 +111,10 @@ endmacro ()
 
 macro(add_plugin_libraries)
   # Add libraries required by this plugin
+  if (WIN32)
+    add_subdirectory("${CMAKE_SOURCE_DIR}/opencpn-libs/WindowsHeaders")
+    target_link_libraries(${PACKAGE_NAME} windows::headers)
+  endif ()
 
   if (WEATHERFAX_USE_RTLSDR)
     add_subdirectory("${CMAKE_SOURCE_DIR}/libs/libusb")
@@ -133,13 +137,16 @@ macro(add_plugin_libraries)
   add_subdirectory("${CMAKE_SOURCE_DIR}/opencpn-libs/wxJSON")
   target_link_libraries(${PACKAGE_NAME} ocpn::wxjson)
 
+  add_subdirectory("${CMAKE_SOURCE_DIR}/opencpn-libs/opencpn-glu")
+  target_link_libraries(${PACKAGE_NAME} opencpn::glu)
+
   add_subdirectory("${CMAKE_SOURCE_DIR}/opencpn-libs/plugingl")
   target_link_libraries(${PACKAGE_NAME} ocpn::plugingl)
 
-  add_subdirectory("${CMAKE_SOURCE_DIR}/libs/curl")
+  add_subdirectory("${CMAKE_SOURCE_DIR}/opencpn-libs/curl")
   target_link_libraries(${PACKAGE_NAME} ocpn::libcurl)
 
-  add_subdirectory("${CMAKE_SOURCE_DIR}/libs/wxcurl")
+  add_subdirectory("${CMAKE_SOURCE_DIR}/opencpn-libs/wxcurl")
   target_link_libraries(${PACKAGE_NAME} ocpn::wxcurl)
 
   add_subdirectory("${CMAKE_SOURCE_DIR}/libs/googletest")

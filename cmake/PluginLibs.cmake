@@ -55,9 +55,6 @@ if (WIN32)
   if (EXISTS "${PROJECT_SOURCE_DIR}/libs/WindowsHeaders")
     add_subdirectory("${PROJECT_SOURCE_DIR}/libs/WindowsHeaders")
     target_link_libraries(${PACKAGE_NAME} windows::headers)
-  elseif (EXISTS "${PROJECT_SOURCE_DIR}/opencpn-libs/WindowsHeaders")
-    add_subdirectory("${PROJECT_SOURCE_DIR}/opencpn-libs/WindowsHeaders")
-    target_link_libraries(${PACKAGE_NAME} windows::headers)
   else ()
     message(STATUS
       "WARNING: WindowsHeaders library is missing, OpenGL unavailable"
