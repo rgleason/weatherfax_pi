@@ -111,6 +111,10 @@ endmacro ()
 
 macro(add_plugin_libraries)
   # Add libraries required by this plugin
+  if (WIN32)
+    add_subdirectory("${CMAKE_SOURCE_DIR}/opencpn-libs/WindowsHeaders")
+    target_link_libraries(${PACKAGE_NAME} windows::headers)
+  endif ()
 
   if (WEATHERFAX_USE_RTLSDR)
     add_subdirectory("${CMAKE_SOURCE_DIR}/libs/libusb")
