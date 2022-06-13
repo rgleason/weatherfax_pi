@@ -114,7 +114,7 @@ jobs:
 
   build-macos:
     macos:
-      xcode: "13.3.1"
+      xcode: "12.5.1"
     environment:
       - OCPN_TARGET: macos
       - CMAKE_BUILD_PARALLEL_LEVEL: 2
@@ -151,17 +151,13 @@ jobs:
       - CMAKE_BUILD_PARALLEL_LEVEL: 2
     <<: *debian-steps
 
-  build-focal-wx31:
+  build-jammy:
     docker:
-      - image: cimg/base:stable-20.04
+      - image: cimg/base:edge-22.04
     environment:
-      - OCPN_TARGET: focal-wx31
+      - OCPN_TARGET: jammy
       - CMAKE_BUILD_PARALLEL_LEVEL: 2
-    steps:
-      - checkout
-      - run: ci/circleci-build-debian-wx31.sh
-      - run: sh -c "cd /build-$OCPN_TARGET; /bin/bash < upload.sh"
-      - run: sh -c "ci/git-push.sh /build-$OCPN_TARGET"
+    <<: *debian-steps
 
   build-buster:
     docker:
@@ -233,7 +229,7 @@ workflows:
       - build-focal:
           <<: *std-filters
 
-      - build-focal-wx31:
+      - build-jammy:
           <<: *std-filters
 
       - build-buster:

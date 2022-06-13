@@ -66,7 +66,6 @@ configure_manifest(${manifest} _new_manifest)
 # here.
 #
 include(Targets)
-#create_targets(${CMAKE_BINARY_DIR}/${manifest_basename})
 create_targets(${_new_manifest})
 
 if ("${BUILD_TYPE}" STREQUAL "")
